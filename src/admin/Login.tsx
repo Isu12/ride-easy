@@ -36,9 +36,9 @@ export default function Login() {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      <div className="relative hidden overflow-hidden bg-dark lg:block">
+      <div className="relative hidden overflow-hidden bg-island lg:block">
         <img src="/images/hero-beach.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-island via-island/40 to-transparent" />
         <div className="absolute bottom-12 left-12 right-12 text-white">
           <p className="font-display text-6xl uppercase leading-none">Run your rentals<br />without a developer</p>
           <p className="mt-3 text-lg text-white/85">Bikes, prices, promotions and bookings in one place.</p>

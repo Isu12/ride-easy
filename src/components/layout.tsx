@@ -88,7 +88,7 @@ function PrototypeRibbon() {
 
 function Footer() {
   return (
-    <footer className="bg-dark text-white">
+    <footer className="bg-island text-white">
       <div className="container-page py-12">
         <div className="flex flex-col justify-between gap-8 md:flex-row">
           <div>

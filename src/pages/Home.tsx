@@ -43,10 +43,10 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative isolate">
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-dark">
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-island">
           <img src="/images/hero-beach.jpg" alt="" className="h-full w-full object-cover object-[70%_center]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/60 to-dark/0" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark/50 to-transparent md:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-r from-island/90 via-island/60 to-island/0" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-island/50 to-transparent md:hidden" />
         </div>
         <div className="container-page pb-40 pt-16 text-white sm:pt-24 md:pb-44">
           <p className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-white/90">
@@ -76,7 +76,7 @@ export default function Home() {
       {/* Live promotion */}
       {livePromo && (
         <section className="container-page mt-10" aria-label="Current offer">
-          <div className="flex flex-col gap-4 rounded-2xl bg-dark px-6 py-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex flex-col gap-4 rounded-2xl bg-island px-6 py-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <div className="flex items-start gap-4">
               <Ticket className="mt-0.5 shrink-0 text-on-dark-accent" size={26} aria-hidden />
               <div>

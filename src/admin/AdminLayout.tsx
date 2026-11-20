@@ -60,16 +60,16 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-bg lg:flex">
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 bg-dark lg:block"><SidebarContent /></aside>
+      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 bg-island lg:block"><SidebarContent /></aside>
 
-      <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-dark px-4 text-white lg:hidden">
+      <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-island px-4 text-white lg:hidden">
         <Link to="/admin" className="font-display text-2xl tracking-wide">Ride Easy <span className="text-sm text-white/75">admin</span></Link>
         <button onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-xl hover:bg-white/10" aria-label="Open admin menu"><Menu /></button>
       </header>
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} aria-hidden />
-          <div className="absolute inset-y-0 left-0 w-72 animate-fade-up bg-dark">
+          <div className="absolute inset-y-0 left-0 w-72 animate-fade-up bg-island">
             <button onClick={() => setOpen(false)} className="absolute right-3 top-5 grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/10" aria-label="Close admin menu"><X size={18} /></button>
             <SidebarContent onNavigate={() => setOpen(false)} />
           </div>

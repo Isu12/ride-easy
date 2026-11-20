@@ -66,7 +66,7 @@ function LineChart({ series }: { series: { date: string; count: number }[] }) {
         )}
       </svg>
       {hover !== null && h && (
-        <div className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg bg-dark px-3 py-1.5 text-xs text-white shadow-lift"
+        <div className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg bg-island px-3 py-1.5 text-xs text-white shadow-lift"
           style={{ left: `${(x(hover) / W) * 100}%` }}>
           <span className="font-semibold">{h.count} {h.count === 1 ? "booking" : "bookings"}</span> · {formatDate(h.date)}
         </div>

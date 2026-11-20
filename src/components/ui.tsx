@@ -148,7 +148,7 @@ export function Dialog({ open, onClose, title, children, footer }: { open: boole
   if (!open) return null;
   return createPortal(
     <div className="fixed inset-0 z-[70] grid place-items-center p-4">
-      <div className="absolute inset-0 bg-dark/50 backdrop-blur-[2px]" onClick={onClose} aria-hidden />
+      <div className="absolute inset-0 bg-island/50 backdrop-blur-[2px]" onClick={onClose} aria-hidden />
       <div ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={title} className="card relative w-full max-w-md animate-fade-up p-6 outline-none">
         <h2 className="text-lg font-semibold">{title}</h2>
         <div className="mt-2 text-ink-soft">{children}</div>
@@ -179,7 +179,7 @@ export function Sheet({ open, onClose, title, children, side = "right" }: { open
   if (!open) return null;
   return createPortal(
     <div className="fixed inset-0 z-[60]">
-      <div className="absolute inset-0 bg-dark/40" onClick={onClose} aria-hidden />
+      <div className="absolute inset-0 bg-island/40" onClick={onClose} aria-hidden />
       <div role="dialog" aria-modal="true" aria-label={title}
         className={clsx("absolute flex flex-col bg-surface shadow-lift animate-fade-up",
           side === "right" ? "inset-y-0 right-0 w-full max-w-lg" : "inset-x-0 bottom-0 max-h-[88vh] rounded-t-3xl")}>

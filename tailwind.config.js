@@ -14,7 +14,7 @@ export default {
         cta: { DEFAULT: v("cta"), ink: v("cta-ink") },
         ride: v("ride"),
         tint: v("tint"),
-        dark: v("dark"),
+        island: v("dark"),
         "on-dark-accent": v("on-dark-accent"),
         accent: v("accent"),
         // Status colours are shared by every palette so their meaning never changes
