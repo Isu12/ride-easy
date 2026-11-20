@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  /* Fallback colours (Coastal Ride) so the page is never colourless if the
+     palette script hasn't run yet. src/theme/palettes.ts overrides these. */
+  :root {
+    --bg: 251 248 242; --surface: 255 255 255; --border: 234 223 207;
+    --ink: 11 60 93; --ink-soft: 79 102 119; --primary: 11 127 130;
+    --cta: 244 160 36; --cta-ink: 11 60 93; --ride: 168 209 79; --tint: 221 242 240;
+    --dark: 11 60 93; --on-dark-accent: 127 224 218; --accent: 46 196 192;
+    --hero-from: 11 60 93; --hero-via: 11 127 130; --hero-to: 46 196 192;
+  }
   html { @apply bg-bg text-ink antialiased; scroll-behavior: smooth; }
   body { @apply bg-bg font-sans text-ink; transition: background-color .25s ease, color .25s ease; }
   :focus-visible { @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-bg; }
