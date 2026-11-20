@@ -1,0 +1,72 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { KeyRound, LogIn } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { z } from "zod";
+import { Logo } from "@/components/layout";
+import { Alert, Button, Field } from "@/components/ui";
+import { ApiError, isAdmin, signIn } from "@/lib/api";
+import { PaletteSwitcher } from "@/theme/PaletteSwitcher";
+
+const schema = z.object({
+  email: z.string().trim().email("Please enter a valid email."),
+  password: z.string().min(1, "Please enter your password."),
+});
+type Values = z.infer<typeof schema>;
+
+export default function Login() {
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const [error, setError] = useState<string | null>(null);
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Values>({ resolver: zodResolver(schema) });
+  const next = params.get("next")?.startsWith("/admin") ? params.get("next")! : "/admin";
+
+  if (isAdmin()) return <Navigate to={next} replace />;
+
+  async function onSubmit(v: Values) {
+    setError(null);
+    try {
+      await signIn(v.email, v.password);
+      navigate(next, { replace: true });
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : "Couldn't sign in. Please try again.");
+    }
+  }
+
+  return (
+    <div className="grid min-h-screen lg:grid-cols-2">
+      <div className="relative hidden overflow-hidden bg-dark lg:block">
+        <img src="/images/hero-beach.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
+        <div className="absolute bottom-12 left-12 right-12 text-white">
+          <p className="font-display text-6xl uppercase leading-none">Run your rentals<br />without a developer</p>
+          <p className="mt-3 text-lg text-white/85">Bikes, prices, promotions and bookings in one place.</p>
+        </div>
+      </div>
+      <div className="flex items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md">
+          <Logo />
+          <h1 className="h-display mt-10 text-5xl">Hotel admin</h1>
+          <p className="mt-1 text-ink-soft">Sign in to manage Ride Easy.</p>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 space-y-5">
+            <Field label="Email" htmlFor="email" error={errors.email?.message}>
+              <input id="email" type="email" autoComplete="username" className="field" {...register("email")} aria-invalid={!!errors.email} />
+            </Field>
+            <Field label="Password" htmlFor="password" error={errors.password?.message}>
+              <input id="password" type="password" autoComplete="current-password" className="field" {...register("password")} aria-invalid={!!errors.password} />
+            </Field>
+            {error && <Alert>{error}</Alert>}
+            <Button type="submit" size="lg" className="w-full" loading={isSubmitting}><LogIn size={18} /> Sign in</Button>
+          </form>
+          <div className="mt-6 rounded-xl border border-dashed border-line bg-surface p-4 text-sm">
+            <p className="flex items-center gap-2 font-semibold"><KeyRound size={16} className="text-primary" aria-hidden /> Demo credentials</p>
+            <p className="mt-1 text-ink-soft">Email: <span className="font-mono text-ink">admin@rideeasy.test</span></p>
+            <p className="text-ink-soft">Password: <span className="font-mono text-ink">RideEasy@2026</span></p>
+          </div>
+        </div>
+      </div>
+      <PaletteSwitcher />
+    </div>
+  );
+}

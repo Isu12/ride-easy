@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply bg-bg text-ink antialiased; scroll-behavior: smooth; }
+  body { @apply bg-bg font-sans text-ink; transition: background-color .25s ease, color .25s ease; }
+  :focus-visible { @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-bg; }
+  input, select, textarea { @apply text-ink; }
+  ::selection { background: rgb(var(--ride) / .6); color: rgb(var(--ink)); }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary; }
+  .h-display { @apply font-display uppercase leading-[0.95] tracking-wide text-ink; }
+  .card { @apply rounded-2xl border border-line bg-surface shadow-soft; }
+  .field-label { @apply mb-1.5 block text-sm font-semibold text-ink; }
+  .field { @apply w-full rounded-xl border border-line bg-surface px-3.5 py-3 text-base text-ink placeholder:text-ink-soft/70 transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25 disabled:opacity-60; }
+  .field-error { @apply mt-1.5 text-sm font-medium text-status-overdue; }
+  .link { @apply font-medium text-primary underline-offset-4 hover:underline; }
+  .skeleton { @apply relative overflow-hidden rounded-xl bg-line/60; }
+  .skeleton::after { content: ""; @apply absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite] bg-gradient-to-r from-transparent via-white/50 to-transparent; }
+  .hero-gradient { background: linear-gradient(160deg, rgb(var(--hero-from)) 0%, rgb(var(--hero-via)) 55%, rgb(var(--hero-to)) 100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body, html { background: #fff !important; }
+  .card { box-shadow: none !important; border-color: #ddd !important; }
+}
